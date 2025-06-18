@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamBoost Pro - Scale Your Twitch Channel to New Heights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #9146ff, #f368e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #9146ff;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #9146ff, #f368e0);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(145, 70, 255, 0.4);
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .growth-stat {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 15px;
+            margin: 20px 0;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .growth-stat .number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .growth-stat .label {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .hero .cta-button {
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            margin-top: 30px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .services {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #f8f9ff, #e8ecff);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #9146ff, #f368e0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .credentials {
+            background: linear-gradient(135deg, #2d1b69, #11998e);
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .credentials-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .credentials h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .credentials p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .twitch-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .twitch-link:hover {
+            text-decoration: underline;
+        }
+
+        .testimonials {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #9146ff;
+        }
+
+        .testimonial .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .testimonial .author {
+            font-weight: bold;
+            color: #9146ff;
+        }
+
+        .pricing {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 100px 0;
+            color: white;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            border: 2px solid #ffd700;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 20px 0;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .contact {
+            background: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9ff;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #9146ff;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">StreamBoost Pro</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#credentials">About</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Scale Your Twitch Channel to New Heights</h1>
+                <p class="subtitle">Proven advertising strategies and expert coaching to accelerate your streaming success</p>
+                
+                <div class="growth-stat">
+                    <div class="number">450%</div>
+                    <div class="label">Average Monthly Growth</div>
+                </div>
+                
+                <a href="#contact" class="cta-button">Start Growing Today</a>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">Comprehensive Growth Solutions</h2>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">📈</div>
+                        <h3>Exclusive Advertising Campaigns</h3>
+                        <p>Strategic advertising placements designed specifically for Twitch growth. Our proven methods have helped creators achieve up to 450% monthly growth through targeted audience acquisition and engagement optimization.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Personal Growth Coaching</h3>
+                        <p>One-on-one coaching sessions with experienced streamers who understand the platform inside and out. Get personalized strategies tailored to your content style and growth goals.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🎬</div>
+                        <h3>Custom Media Training</h3>
+                        <p>Professional media training to enhance your on-screen presence, improve audience engagement, and develop your unique streaming personality. Learn from industry professionals who've built successful channels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="credentials" class="credentials">
+            <div class="container">
+                <h2 class="section-title">Proven Track Record</h2>
+                
+                <div class="credentials-card">
+                    <h3>Led by Yertttt</h3>
+                    <p>Our agency is founded and led by <a href="https://www.twitch.tv/yertttt/about" class="twitch-link" target="_blank">Yertttt</a>, a successful Twitch streamer with over 7,400 followers who has mastered the art of audience growth and engagement.</p>
+                    
+                    <p style="margin-top: 20px;">With firsthand experience building a thriving Twitch community, our team understands exactly what it takes to succeed on the platform and can guide you through proven strategies that actually work.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Success Stories</h2>
+                
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p class="quote">"I went from 50 followers to over 2,000 in just 3 months. The advertising strategy was incredible and the coaching helped me find my voice."</p>
+                        <p class="author">- Sarah K., Variety Streamer</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="quote">"The media training completely transformed my streams. I'm more confident, engaging, and my viewer retention has skyrocketed."</p>
+                        <p class="author">- Mike R., Gaming Content Creator</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="quote">"Finally, a service that actually understands Twitch. The results speak for themselves - 400% growth in my first month!"</p>
+                        <p class="author">- Alex T., Just Chatting Streamer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <h2 class="section-title">Choose Your Growth Plan</h2>
+                
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Starter</h3>
+                        <div class="price">$297</div>
+                        <p>Perfect for new streamers</p>
+                        <ul class="features">
+                            <li>✓ Basic advertising campaign</li>
+                            <li>✓ 2 coaching sessions</li>
+                            <li>✓ Stream setup optimization</li>
+                            <li>✓ Growth tracking & analytics</li>
+                            <li>✓ 30-day support</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Get Started</a>
+                    </div>
+                    
+                    <div class="pricing-card featured">
+                        <h3>Pro Growth</h3>
+                        <div class="price">$597</div>
+                        <p>Most Popular - Maximum Results</p>
+                        <ul class="features">
+                            <li>✓ Premium advertising campaigns</li>
+                            <li>✓ 6 weekly coaching sessions</li>
+                            <li>✓ Complete media training course</li>
+                            <li>✓ Custom content strategy</li>
+                            <li>✓ Community building tactics</li>
+                            <li>✓ 60-day support</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Start Growing</a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3>Elite</h3>
+                        <div class="price">$997</div>
+                        <p>For serious streamers</p>
+                        <ul class="features">
+                            <li>✓ VIP advertising package</li>
+                            <li>✓ Unlimited coaching access</li>
+                            <li>✓ 1-on-1 media training</li>
+                            <li>✓ Brand partnership guidance</li>
+                            <li>✓ Advanced monetization strategies</li>
+                            <li>✓ 90-day support + maintenance</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Go Elite</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Ready to Transform Your Channel?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 40px;">Join hundreds of successful streamers who've accelerated their growth with our proven system.</p>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="twitch">Twitch Channel (if you have one)</label>
+                            <input type="url" id="twitch" name="twitch" placeholder="https://twitch.tv/yourchannel">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="followers">Current Follower Count</label>
+                            <input type="number" id="followers" name="followers" placeholder="e.g. 150">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="goals">Your Growth Goals</label>
+                            <textarea id="goals" name="goals" rows="4" placeholder="Tell us about your streaming goals and what you'd like to achieve..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%; font-size: 1.2rem;">Apply for Growth Program</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 StreamBoost Pro. All rights reserved. | Accelerating Twitch Success Since 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your application! We\'ll be in touch within 24 hours to discuss your growth strategy.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
